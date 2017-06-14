@@ -7,10 +7,11 @@ import Login from '../Login/Login'
 import BookingList from '../Booking/BookingList'
 import Members from '../Members/Members';
 import AdminLogin from '../Admin/AdminLogin/Admin'
-import App from '../App'
+// import App from '../App'
 import * as s from './styles'
 import g5logo from '../assets/G5LOGOMono.png'
 function PrivateRoute({ component: Component, loggedIn, ...rest }) {
+    
     return (
         <Route
             {...rest}
@@ -58,50 +59,54 @@ class Home extends Component {
         return this.state.loading === true ? <s.LoadingTag>Loading</s.LoadingTag> : (
             <BrowserRouter>
                 <div>
-                        <s.HeaderDiv>
-                                <s.sLink to="/" ><img height={80} src={g5logo} alt='G5Logo'/></s.sLink>
-               
-                            <s.HeaderList>
-                                <s.HeaderLabel>
-                                    <s.sLink to="/booking">Booking List</s.sLink>
-                                </s.HeaderLabel>
-                                <s.HeaderLabel>
-                                    <s.sLink to="/members">Members</s.sLink>
-                                </s.HeaderLabel>
-                                <s.HeaderLabel>
-                                    <s.sLink to="/booking">Chat Support</s.sLink>
-                                </s.HeaderLabel>
-                                <s.HeaderLabel>
-                                    {this.state.loggedIn
-                                        ? <s.sLink
-                                            to="/"
-                                            onClick={(e) => {
-                                                e.preventDefault()
-                                                logout()
-                                            }}
-                                            >Logout</s.sLink>
-                                        : <span>
-                                            <s.sLink to="/login">Login</s.sLink>
-                                        </span>}
-                                </s.HeaderLabel>
+                    <s.HeaderDiv>
+                        <s.sLink to="/" ><img height={80} src={g5logo} alt='G5Logo' /></s.sLink>
+
+                        <s.HeaderList>
+                            <s.HeaderLabel>
+                                <s.sLink to="/booking">Booking List</s.sLink>
+                            </s.HeaderLabel>
+                            <s.HeaderLabel>
+                                <s.sLink to="/members">Members</s.sLink>
+                            </s.HeaderLabel>
+                            <s.HeaderLabel>
+                                <s.sLink to="/booking">Chat Support</s.sLink>
+                            </s.HeaderLabel>
+                            <s.HeaderLabel>
                                 {this.state.loggedIn
-                                    ?
-                                    null
-                                    : <s.HeaderLabel>
-                                        <s.sLink to="/register">Register</s.sLink>   
-                                        </s.HeaderLabel>}
-                            </s.HeaderList>
-                        </s.HeaderDiv>
-            
+                                    ? <s.sLink
+                                        to="/"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            logout()
+                                        }}
+                                    >Logout</s.sLink>
+                                    : <span>
+                                        <s.sLink to="/login">Login</s.sLink>
+                                    </span>}
+                            </s.HeaderLabel>
+                            {this.state.loggedIn
+                                ?
+                                null
+                                : <s.HeaderLabel>
+                                    <s.sLink to="/register">Register</s.sLink>
+                                </s.HeaderLabel>}
+                        </s.HeaderList>
+                    </s.HeaderDiv>
+
                     <s.ContentDiv>
-                        <div className="row">
+                        <div>
                             <Switch>
-                                <Route path='/' exact render={()=> (this.state.loggedIn ? <Redirect to="/booking"/> : <Redirect to="/login"/>)} />
-                                <PublicRoute loggedIn={this.state.loggedIn} path='/login' component={Login} />
-                                
-                                <PublicRoute loggedIn={this.state.loggedIn} path='/register' component={Register} />
-                                <PrivateRoute loggedIn={this.state.loggedIn} user={this.user} path='/booking' component={BookingList} />
-                                <PrivateRoute loggedIn={this.state.loggedIn} user={this.user} path='/members' component={Members} />
+                                <Route path='/' exact render={() =>
+                                    (this.state.loggedIn ? <Redirect to="/booking" /> : <Redirect to="/login" />)} />
+                                <PublicRoute loggedIn={this.state.loggedIn}
+                                    path='/login' component={Login} />
+                                <PublicRoute loggedIn={this.state.loggedIn}
+                                    path='/register' component={Register} />
+                                <PrivateRoute loggedIn={this.state.loggedIn} user={this.user}
+                                    path='/booking' component={BookingList} />
+                                <PrivateRoute loggedIn={this.state.loggedIn} user={this.user}
+                                    path='/members' component={Members} />
                                 <Route render={() => <h3>404 Page not found</h3>} />
                             </Switch>
                             <PublicRoute loggedIn={this.state.loggedIn} path='/admin/login' component={AdminLogin} />

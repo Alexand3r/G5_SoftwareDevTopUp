@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-// import * as admin from 'firebase-admin'
+
 const firebase_config = {
     apiKey: "AIzaSyCZI2x2-W1RfxCY9WfTvQbb0Ek4eBTiaOQ",
     authDomain: "softwaredevtopup.firebaseapp.com",

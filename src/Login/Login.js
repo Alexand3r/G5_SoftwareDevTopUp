@@ -40,11 +40,11 @@ class Login extends Component {
                 <LoginForm onSubmit={this.submitHandler}>
                     <div>
                         <label>E-mail</label>
-                        <LoginInput ref={(email) => this.email = email} />
+                        <LoginInput innerRef={(email) => this.email = email} />
                     </div>
                     <div>
                         <label>Password</label>
-                        <LoginInput type="password" ref={(pass) => this.pass = pass} />
+                        <LoginInput type="password" innerRef={(pass) => this.pass = pass} />
                     </div>
                     <div>
                         {this.state.loginResult}

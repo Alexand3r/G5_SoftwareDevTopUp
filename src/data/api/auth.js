@@ -1,11 +1,11 @@
 import {dbRef, fAuth,facebookAuth} from '../config/firebase'
-
+export var user=''
 export function authenticate(email, pass){
     return fAuth().createUserWithEmailAndPassword(email,pass).then(makeUser)
 }
 
 export function login(email,pass){
-    return fAuth().signInWithEmailAndPassword(email,pass)
+    return user=fAuth().signInWithEmailAndPassword(email,pass)
 }
 
 export function logout (){
