@@ -38,7 +38,6 @@ class BookingList extends Component {
         }
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
-       
     }
     handleConfirmRequest(slotInfo){
         let data = {
@@ -48,6 +47,7 @@ class BookingList extends Component {
             rejected:false
         }
         actions.createRequest(data,()=>{},()=>{console.log('error')})
+        this.handleCloseModal()
     }
     handleOpenModal(slotInfo) {
         this.setState({ showModal: true, slotInfo: slotInfo })
